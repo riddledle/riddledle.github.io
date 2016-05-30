@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/28/Injecting-a-line-break-插入一个转行/index.html">
 <meta property="og:site_name" content="RiddleAndEcho">
 <meta property="og:description" content="原文见：https://css-tricks.com/injecting-line-break/#more-241954如何插入一个转行，关于很多“But…”的故事……">
-<meta property="og:updated_time" content="2016-05-29T15:52:28.085Z">
+<meta property="og:updated_time" content="2016-05-30T10:36:07.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Injecting a line break|插入一个转行">
 <meta name="twitter:description" content="原文见：https://css-tricks.com/injecting-line-break/#more-241954如何插入一个转行，关于很多“But…”的故事……">
@@ -94,7 +94,17 @@
       <p>原文见：<a href="https://css-tricks.com/injecting-line-break/#more-241954" target="_blank" rel="external">https://css-tricks.com/injecting-line-break/#more-241954</a><br>如何插入一个转行，关于很多“But…”的故事……</p>
 <a id="more"></a>
 <hr>
-<p>CSS tricks上一篇。<br>楼主说他想换个行但是觉得“不得不”用某种HTML语言来完成有点点奇怪（我并不懂）。<br>于是<br>METHOD 1：<br>用<div>代替<span><br>结果：</span></div></p>
+<p>CSS tricks的一篇。<br>楼主说他想换个行但是觉得“不得不”用某种HTML语言来完成有点点奇怪（我并不懂）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 class=&quot;one&quot;&gt;</span><br><span class="line"></span><br><span class="line">  Break right after this</span><br><span class="line"></span><br><span class="line">  &lt;!-- &lt;br&gt; could go here, but can we do it with CSS? --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;span&gt;</span><br><span class="line">    and before this</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure></p>
+<p>于是</p>
+<p>METHOD 1：<br><strong>用div代替span</strong><br>BUT：块级元素的设计和行内元素的设计初衷相违背；</p>
+<p>METHOD 2:<br><strong>用伪元素::before来完成，在文始加一个转义字符\A* </strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 span::before &#123;</span><br><span class="line">  content: &quot;\A&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>BUT：这对行内元素来说没有用。</p>
+<p>METHOD 3:<br><strong>在以上方法下，使空白符有意义。即white-space:pre</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1.two span::before &#123;</span><br><span class="line">  content: &quot;\A&quot;;</span><br><span class="line">  white-space: pre;</span><br></pre></td></tr></table></figure>BUT：在第一行行末留下了一小块痕迹……</p>
+<p><strong>然后就是一些大家提出的TRICKS了</strong></p>
+<p>METHOD 4:<br><strong>就是将span先变为块级元素，然后用伪元素::before来写入文字，并且设计它的内边距等样式。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">h1 span &#123;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br><span class="line">h1 span::before &#123;</span><br><span class="line">  content: attr(data-text);</span><br><span class="line">  background: black;</span><br><span class="line">  padding: 1px 8px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>METHOD 5：<br><strong>直接设置span为display:table</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 span &#123;</span><br><span class="line">  display: table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>METHOD 6:<br>这是我本人很喜欢的……喜欢flex box……<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">h1.nine &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  align-items: flex-start;</span><br><span class="line"></span><br><span class="line">  span &#123;</span><br><span class="line">    background: black;</span><br><span class="line">    padding: 1px 8px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>我觉得这些小细节超可爱……<br>效果图在作者原帖里。</p>
 
     
   </div>
