@@ -26,13 +26,14 @@
 
 body {
   position: relative;
-  background-color: #fff;
-  background-repeat: repeat-x;
+  background-repeat: cover;
   background-position: 0 40px;
   padding-bottom: 70px;
+  background-image: url(../img/back.jpg);
 }
 
 .content {
+  background-color: #fff;
   padding: 20px;
   margin: 20px -20px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
@@ -58,8 +59,9 @@ body {
   margin: 1.0em 0em;
   padding-top: 25px;
   line-height: 1.5em;
-  font-family: 'Open Sans',"Helvetica Neue", "Helvetica","Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
-    font-size: 17px
+  font-family: Georgia,Cambria,Times New Roman,Times,serif;
+  font-size: 17px;
+  color: #666      
 }
 
 .page p{
@@ -115,7 +117,7 @@ li i {
 
 a{color:#1863a1}
 a:focus{color:#0181eb}
-a:hover{color:#0181eb}
+a:hover{color:#0181eb;text-decoration: none;}
 a:active{color:#01579f}
 
 a.label-anchor {
@@ -167,8 +169,10 @@ blockquote {
 }
 
 blockquote p, blockquote ol, blockquote ul, blockquote li, .slogan{
-  font-family: 'Open Sans',"Helvetica Neue", /*'楷体', 'STKaiti', "Kai", "kaiti",*/ Helvetica, "Segoe UI", Ubuntu, "Hiragino Sans GB";
-    font-size: 17px
+  font-family: Georgia,Cambria,Times New Roman,Times,serif;
+  font-size: 14px;
+  line-height: 1.5em;  
+  color: #666
 }
 
 /* =============================================================================
