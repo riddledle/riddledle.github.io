@@ -49,6 +49,10 @@
   body {
     padding-top: 0;
   }
+    
+  blockquote {
+    margin: 0 0;
+    }
 
   /* Sidenav */
   .sidenav {
