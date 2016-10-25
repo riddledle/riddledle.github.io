@@ -11,7 +11,9 @@
     width: 230px \9; /* Override the previous IE8-9 hack */
   }
 }
-
+blockquote {
+    margin: 0 30%;
+}
 /* Desktop
 ------------------------- */
 @media (min-width: 991px) and (max-width: 1199px)  {
@@ -23,6 +25,9 @@
     margin-bottom: 30px;
     margin-right: 0;
   }
+    blockquote {
+        margin: 0 30%;
+    }
 
 }
 
@@ -39,7 +44,9 @@
     width: 166px;
     margin-top: 20px;
   }
-  
+  blockquote {
+        margin: 0 30%;
+    }
 }
 
 /* Tablet
@@ -74,7 +81,9 @@
   body {
     padding-top: 0;
   }
-
+blockquote {
+    margin: 0 0;
+    }
   /* Change up some type stuff */
   h2 small {
     display: block;
